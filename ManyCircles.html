@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <!--Here we are going to define a header that contains 
+    a canvas, where we will draw circles with different fillings
+and the style-->
+ <head>
+    <meta charset="utf-8" />
+    <title>
+        Coding Challenge #1: Professional Certicate in Coding MiTxPro
+    </title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        canvas {
+            background: #eee;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+ </head>
+ <body>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+    <script>
+        //The following is to allow to render graphics on the canvas
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d"); //Here we are storing a reference to the <canvas>
+            //ther we are creating a ctx variable to store the 2D rendering context
+        var x = canvas.width/2;
+        var y = canvas.height-30;
+        var dx = 2;
+        var dy = -2; 
+        var ballradius = 10;
+
+        function drawBall(){
+             //Print now a circle
+        ctx.beginPath();
+        ctx.arc(x, y, ballradius, 0, Math.PI * 2);
+        ctx.fillStyle = "gold";
+        ctx.strokeStyle = "rgba(0,0,255,0.5)";
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+        }
+           
+        function draw(){
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            drawBall();
+            if(x + dx > canvas.width - ballradius || x + dx < ballradius){
+                dx = -dx;
+            }
+            if(y + dy > canvas.height - ballradius || y + dy < ballradius){
+                dy = -dy;
+            }
+
+            x += dx;
+            y += dy;
+        }   
+           
+            //Clearrect allows to updating the canvas
+            //arc is used to define a circle, it takes 6 parameters, please see for details: https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Create_the_Canvas_and_draw_on_it
+            //the fillstyle property store a color that will be used by fill()
+            //Now we will constantly updating frams from the canvas with a draw function
+   
+        setInterval(draw,10)
+   
+   </script>
+<p> <h1>How to code the above bouncing ball using Javascript? </h1></p>
+
+<p> The following small tutorial does not intend to be comprehensive, since there are resources /n 
+    dedicated to that like <href="https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Bounce_off_the_walls"> 
+    mdn havascript documentation </href>. /n
+Here we are just merely pay attention on the global overview <of:>
+<n>1. Generate a canvas </n>
+<n>2. Make a function draw circle that contains information of the filling</n>
+<n>3. Make a function draw that will update your frames inside the canvas of your cirlces</n>
+<n>4. Set som conditionals for the bouncing effects</n> </p>
+<p>Now I showed some imgages of the actual code:</p>
+<p><img src="./CodingCHallenge1.JPG"></p>
+<p><img src="./CodingCHallenge2.JPG"></p>
+<p><img src="./CodingCHallenge3.JPG"></p>
+
+
+ </body>
+</html>
+
+
+
+
+</html>
