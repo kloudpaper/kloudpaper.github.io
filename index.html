@@ -20,6 +20,7 @@
     .download-btn { display:inline-block; padding:10px 18px; border:2px solid #000; text-decoration:none; color:#000; margin-top:12px; }
     .download-btn:hover { background:#000; color:#fff; }
   </style>
+  <link rel="stylesheet" href="print.css" media="print">
 <meta content="index,follow" name="robots"/><meta content="Currículum de Aarón Hernández Cid — Químico Analítico (NMR/EPR/IR/Raman), educador, investigador y consultor tecnológico." name="description"/><meta content="CV — Aarón Hernández Cid" property="og:title"/><meta content="Perfil, experiencia, educación, logros y publicaciones." name="og:description"/><meta content="profile" property="og:type"/><meta content="summary_large_image" name="twitter:card"/><link href="https://example.com/cv/aaron-hernandez-cid" rel="canonical"/><script>
 (function(){
   function text(el, sel){ const n=(sel?el.querySelector(sel):el); return n ? n.textContent.trim() : ""; }
@@ -30,7 +31,7 @@
     const ctx = "https://schema.org";
     const name = text(document, "h1") || "Curriculum Vitae";
     const image = attr(document, ".headshot", "src");
-    const email = attr(document, 'a[href^="mailto:"]', "href").replace(/^mailto:/,"");
+    const email = attr(document, 'a[href^="mailto:"]', "href").replace(/^mailto:/,"aaron.hernandezcd@gmail.com");
     const phone = text(document, "#contacto .info-item:nth-of-type(2) p");
     const sameAs = [];
     const lk = document.querySelector('a[href*="linkedin.com"]'); if(lk) sameAs.push(lk.href);
@@ -167,7 +168,43 @@
 <span class="chip">Vinculación academia‑industria</span>
 <span class="chip">Gestión de proyectos</span>
 </div>
-<a class="download-btn" download="" href="assets/docs/AHCCV19xii2024_EN_TS.docx">Descargar CV (DOCX)</a>
+<div style="margin-top: 16px;">
+  <a href="AHCCV19xii2024_EN_TS.pdf" download class="download-btn">
+    📄 Descargar CV (PDF)
+  </a>
+</div>
+<!--button id="btn-pdf">📄 Descargar PDF</button>
+
+<!--script*>
+  // Reemplaza por TU dominio de Render cuando lo tengas
+  const PDF_API = "https://cv-pdf-service.onrender.com/pdf";
+
+  document.getElementById("btn-pdf").addEventListener("click", async () => {
+    try {
+      // Si quieres renderizar otra ruta específica de tu site, añade ?url=...
+      const resp = await fetch(PDF_API /* + "?url=https://kloudpaper.github.io/#experiencia" */, {
+        method: "GET",
+        mode: "cors"
+      });
+      if (!resp.ok) throw new Error("Error al generar PDF");
+
+      // Convierte el stream en Blob y dispara descarga
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "CV_Aaron_Hernandez_Cid.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      alert("No se pudo generar el PDF. Intenta de nuevo.");
+      console.error(e);
+    }
+  });
+</script>
+
 </div>
 </div>
 </div>
